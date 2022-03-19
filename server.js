@@ -71,25 +71,22 @@ function viewDepartments() {
 
 function addDepartment() {
 
-    // inqurier
-    //     .prompt({
-    //         type: 'input',
-    //         name: 'addDepartment',
-    //         message: 'What is the name of the department?'
-    // })
-    // .then(function ({answer}) {
-
-    //     const newDept = `INSERT INTO department(name) VALUES(?)`, [answer.addDepartment]
-
-    //     connection.promise().query(sql)
-    //     .then( ([rows]) => {
-    //         console.table('\n', rows);
-    //     })
-    //     .catch(console.log)
-    //     .then( () => startScreen());
-    // })
-
-
+    inqurier
+        .prompt({
+            type: 'input',
+            name: 'addDepartment',
+            message: 'What is the name of the department?'
+    })
+    .then(answers => {
+        
+        connection.promise().query(`INSERT INTO department SET ?`, {
+            name: answers.addDepartment
+        }, function(err) {
+            if (err) throw err;
+        })
+        .catch(console.log)
+        .then( () => startScreen());
+    })
 };
 
 function viewEmployees() {
@@ -137,7 +134,23 @@ function viewRoles() {
 };
 
 function addRole() {
-    console.log('Add role:');
+
+//     inqurier
+//     .prompt({
+//         type: 'input',
+//         name: 'addDepartment',
+//         message: 'What is the name of the department?'
+// })
+// .then(answers => {
+    
+//     connection.promise().query(`INSERT INTO department SET ?`, {
+//         name: answers.addDepartment
+//     }, function(err) {
+//         if (err) throw err;
+//     })
+//     .catch(console.log)
+//     .then( () => startScreen());
+// })
 };
 
 function quit() {
